@@ -1,11 +1,15 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SignUp from "./pages/SignUp/SignUp";
 
 function App() {
   return (
-    <div className="App text-red-500">
-      App
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/sign-up" element={<SignUp />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
