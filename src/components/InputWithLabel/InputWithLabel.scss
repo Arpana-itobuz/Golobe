@@ -1,0 +1,18 @@
+.input-label {
+    transition: 0.3s;
+    pointer-events: none;
+  }
+  
+  .address-input:valid ~ .input-label,
+  .address-input:focus ~ .input-label {
+    color: #4d4d4d;
+    transform: translateX(3px) translateY(-25px);
+    background-color: #ffffff;
+    padding: 0px 5px;
+  }
+  
+  .address-input:focus {
+    outline: none;
+    border: 1px solid #4d4d4d;
+  }
+  
