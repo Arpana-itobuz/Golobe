@@ -37,12 +37,12 @@ export default function SignUp() {
   ];
 
   return (
-    <div className="grid grid-cols-2 gap-5 m-10">
-      <div className="flex justify-center">
+    <div className="grid md:grid-cols-2 grid-cols-1 gap-5 m-10">
+      <div className="md:flex justify-center hidden">
         <img src={hotelPhoto} alt="hotelPhoto" className="w-90" />
       </div>
 
-      <div className="flex flex-col justify-start me-10">
+      <div className="flex flex-col justify-start md:me-10">
         <div className="w-20 my-5">
           <img src={logo} alt="logo" />
         </div>
@@ -68,7 +68,7 @@ export default function SignUp() {
         </div>
         <div className="flex gap-2 items-center mt-10">
           <input type="checkbox" />
-          <p>
+          <p className="text-xs sm:text-md">
             I agree to all the <span className="text-[#FF8682]">Terms</span> and{" "}
             <span className="text-[#FF8682]">Privacy Policies</span>
           </p>
@@ -79,10 +79,10 @@ export default function SignUp() {
         <p className="text-center mt-3">
           Already have an account? <span className="text-[#FF8682]">Login</span>
         </p>
-        <div className="flex gap-5 items-center mt-10">
-          <hr className="w-2/5 border-[#79747E]" />
-          <p className="text-sm text-[#79747E]">Or Sign up with</p>
-          <hr className="w-2/5 border-[#79747E]" />
+        <div className="flex sm:gap-5 gap-2 items-center mt-10">
+          <hr className="sm:w-2/5 w-24 border-[#79747E]" />
+          <p className="sm:text-sm text-xs text-[#79747E]">Or Sign up with</p>
+          <hr className="sm:w-2/5 w-24 border-[#79747E]" />
         </div>
         <div className="grid grid-cols-3 gap-5 mt-10">
           {appLogos.map((src, id) => {
