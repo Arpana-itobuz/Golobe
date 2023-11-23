@@ -1,5 +1,5 @@
 import React from "react";
-import hotelPhoto from "../../assets/hotel.png";
+
 import logo from "../../assets/logo.svg";
 import InputWithLabel from "../../components/InputWithLabel/InputWithLabel";
 import facebook from "../../assets/facebook.svg";
@@ -7,9 +7,12 @@ import google from "../../assets/google.svg";
 import apple from "../../assets/apple.svg";
 import PasswordInput from "../../components/PasswordInput/PasswordInput";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { registerUser } from "../../helperFunctions/apiCalls";
+import ImageSlider from "../../components/ImageSlider/ImageSlider";
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const labelValues = [
     { label: "Password", name: "password" },
     { label: "Confirm Password", name: "confirmPassword" },
@@ -49,7 +52,14 @@ export default function SignUp() {
 
   const methods = useForm<FormInputs>();
 
-  const onSubmit: SubmitHandler<FormInputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormInputs> = async (formdetails) => {
+    const { success } = await registerUser(formdetails);
+
+    if (success) {
+      navigate("/sign-in");
+      console.log(formdetails);
+    }
+  };
 
   const appLogos = [
     {
@@ -64,7 +74,7 @@ export default function SignUp() {
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 gap-5 sm:m-10 m-5">
       <div className="md:flex justify-center hidden">
-        <img src={hotelPhoto} alt="hotelPhoto" className="w-90" />
+        <ImageSlider />
       </div>
 
       <div className="flex flex-col justify-start md:me-10">
