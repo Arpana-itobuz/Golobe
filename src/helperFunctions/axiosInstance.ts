@@ -1,8 +1,10 @@
 import axios, { AxiosError } from "axios";
 
-export const baseURL = process.env.REACT_BASE_URL;
+export const baseURL = process.env.REACT_APP_BASE_URL;
 
-export const instance = axios.create({baseURL});
+console.log(baseURL);
+
+export const instance = axios.create({ baseURL: baseURL });
 
 instance.interceptors.response.use(
   (response) => response,

@@ -56,7 +56,7 @@ export default function SignUp() {
     const { success } = await registerUser(formdetails);
 
     if (success) {
-      navigate("/sign-in");
+      navigate("/log-in");
       console.log(formdetails);
     }
   };

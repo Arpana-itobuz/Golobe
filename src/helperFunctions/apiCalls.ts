@@ -31,7 +31,18 @@ const apiCall = async <T, U>(
 
 export async function registerUser(formData: UserSignUp) {
   const response = await apiCall<null, UserSignUp>(
-    URLS.registerUser,
+    URLS.register,
+    "POST",
+    formData
+  );
+  return response;
+}
+
+//login user
+
+export async function login(formData: UserSignUp) {
+  const response = await apiCall<null, UserSignUp>(
+    URLS.login,
     "POST",
     formData
   );

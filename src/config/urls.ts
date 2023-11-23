@@ -1,3 +1,4 @@
 export const URLS = {
-  registerUser: "/sign-up",
+  register: "/sign-up",
+  login: "/login",
 };
