@@ -5,26 +5,47 @@ import InputWithLabel from "../../components/InputWithLabel/InputWithLabel";
 import facebook from "../../assets/facebook.svg";
 import google from "../../assets/google.svg";
 import apple from "../../assets/apple.svg";
+import PasswordInput from "../../components/PasswordInput/PasswordInput";
+import { useForm, FormProvider } from "react-hook-form";
 
 export default function SignUp() {
+  const labelValues = [
+    { label: "Password", name: "password" },
+    { label: "Confirm Password", name: "confirmPassword" },
+  ];
   const fieldValues = [
     {
       label: "First Name",
       type: "text",
+      name: "firstName",
     },
     {
       label: "Last Name",
       type: "text",
+      name: "lastName",
     },
     {
       label: "Email",
       type: "email",
+      name: "email",
     },
     {
       label: "Phone Number",
       type: "number",
+      name: "phoneNumber",
     },
   ];
+
+  type FormInputs = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: number;
+    password: string;
+    confirmPassword: string;
+  };
+
+  const methods = useForm<FormInputs>();
 
   const appLogos = [
     {
@@ -48,24 +69,28 @@ export default function SignUp() {
         </div>
         <h2 className="text-3xl font-semibold">Sign Up</h2>
         <p className="my-2 text-gray-400">
-          Lets get you all set up so you can access your personal account.
+          Let&apos;s get you all set up so you can access your personal account.
         </p>
-        <div className="grid grid-cols-2 grid-rows-2 gap-5 mt-10">
-          {fieldValues.map((fields, id) => {
-            return (
-              <div key={id}>
-                <InputWithLabel label={fields.label} type={fields.type} />
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="mt-5">
-          <InputWithLabel label="Password" type="password" />
-        </div>
-        <div className="mt-5">
-          <InputWithLabel label="Confirm Password" type="password" />
-        </div>
+        <FormProvider {...methods}>
+          <form action="">
+            <div className="grid grid-cols-2 grid-rows-2 gap-5 mt-10">
+              {fieldValues.map((fields, id) => {
+                return (
+                  <div key={id}>
+                    <InputWithLabel
+                      label={fields.label}
+                      type={fields.type}
+                      name={fields.name}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+            {labelValues.map((label, index) => {
+              return <PasswordInput key={index} label={label.label} name={label.name} />;
+            })}
+          </form>
+        </FormProvider>
         <div className="flex gap-2 items-center mt-10">
           <input type="checkbox" />
           <p className="text-xs sm:text-md">
