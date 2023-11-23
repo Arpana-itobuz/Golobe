@@ -2,14 +2,12 @@ import React from "react";
 
 import logo from "../../assets/logo.svg";
 import InputWithLabel from "../../components/InputWithLabel/InputWithLabel";
-import facebook from "../../assets/facebook.svg";
-import google from "../../assets/google.svg";
-import apple from "../../assets/apple.svg";
 import PasswordInput from "../../components/PasswordInput/PasswordInput";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../../helperFunctions/apiCalls";
 import ImageSlider from "../../components/ImageSlider/ImageSlider";
+import AppLogos from "../../components/appLogos/AppLogos";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -60,16 +58,6 @@ export default function SignUp() {
       console.log(formdetails);
     }
   };
-
-  const appLogos = [
-    {
-      src: `${facebook}`,
-    },
-    {
-      src: `${google}`,
-    },
-    { src: `${apple}` },
-  ];
 
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 gap-5 sm:m-10 m-5">
@@ -136,18 +124,7 @@ export default function SignUp() {
           <p className="sm:text-sm text-xs text-[#79747E]">Or Sign up with</p>
           <hr className="sm:w-2/5 w-24 border-[#79747E]" />
         </div>
-        <div className="grid grid-cols-3 gap-5 mt-10">
-          {appLogos.map((field, id) => {
-            return (
-              <div
-                key={id}
-                className="border p-3 rounded flex items-center justify-center border-[#8DD3BB]"
-              >
-                <img src={field.src} alt={`${field.src}`} />
-              </div>
-            );
-          })}
-        </div>
+        <AppLogos />
       </div>
     </div>
   );

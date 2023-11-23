@@ -1,14 +1,12 @@
 import React from "react";
 import logo from "../../assets/logo.svg";
 import InputWithLabel from "../../components/InputWithLabel/InputWithLabel";
-import facebook from "../../assets/facebook.svg";
-import google from "../../assets/google.svg";
-import apple from "../../assets/apple.svg";
 import PasswordInput from "../../components/PasswordInput/PasswordInput";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../helperFunctions/apiCalls";
 import ImageSlider from "../../components/ImageSlider/ImageSlider";
+import AppLogos from "../../components/appLogos/AppLogos";
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -30,18 +28,10 @@ const LogIn = () => {
     if (success) {
       navigate("/");
       console.log(formdetails);
+      console.log("valid User");
     }
   };
 
-  const appLogos = [
-    {
-      src: `${facebook}`,
-    },
-    {
-      src: `${google}`,
-    },
-    { src: `${apple}` },
-  ];
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 gap-5 sm:m-10 m-5">
       <div className="flex flex-col justify-start md:me-10 sm:w-4/5 w-full">
@@ -89,18 +79,7 @@ const LogIn = () => {
           <p className="text-xs text-[#79747E]">Or Login with</p>
           <hr className="sm:w-2/5 w-32 border-[#79747E]" />
         </div>
-        <div className="grid grid-cols-3 gap-5 mt-10">
-          {appLogos.map((field, id) => {
-            return (
-              <div
-                key={id}
-                className="border p-3 rounded flex items-center justify-center border-[#8DD3BB]"
-              >
-                <img src={field.src} alt={`${field.src}`} />
-              </div>
-            );
-          })}
-        </div>
+        <AppLogos />
       </div>
       <div className="md:flex justify-center hidden">
         <ImageSlider />
