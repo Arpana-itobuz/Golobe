@@ -23,12 +23,12 @@ const LogIn = () => {
   const methods = useForm<FormInputs>();
 
   const onSubmit: SubmitHandler<FormInputs> = async (formdetails) => {
-    const { success } = await login(formdetails);
+    const { success, data } = await login(formdetails);
 
     if (success) {
       navigate("/");
-      console.log(formdetails);
-      console.log("valid User");
+      console.log(data);
+      console.log("Valid User");
     }
   };
 
