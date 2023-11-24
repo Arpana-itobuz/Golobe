@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../assets/logo.svg";
 import InputWithLabel from "../../components/InputWithLabel/InputWithLabel";
 import PasswordInput from "../../components/PasswordInput/PasswordInput";
@@ -7,9 +7,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../helperFunctions/apiCalls";
 import ImageSlider from "../../components/ImageSlider/ImageSlider";
 import AppLogos from "../../components/appLogos/AppLogos";
+import { Token } from "../../interfaces/enums";
+import { GlobalContext } from "../../context/GlobalContext";
+import { UserLogin } from "../../interfaces/interfaces";
 
 const LogIn = () => {
   const navigate = useNavigate();
+  const { setUserDetails } = useContext(GlobalContext);
 
   type FormInputs = {
     firstName: string;
@@ -22,13 +26,26 @@ const LogIn = () => {
 
   const methods = useForm<FormInputs>();
 
-  const onSubmit: SubmitHandler<FormInputs> = async (formdetails) => {
-    const { success, data } = await login(formdetails);
+  const onSubmit: SubmitHandler<UserLogin> = async (formDetails) => {
+    try {
+      const response = await login(formDetails);
+      if (response.success && response.data.user) {
+        localStorage.setItem(
+          Token.ACCESS_TOKEN,
+          response.data.token.accessToken
+        );
+        localStorage.setItem(
+          Token.REFRESH_TOKEN,
+          response.data.token.refreshToken
+        );
 
-    if (success) {
-      navigate("/");
-      console.log(data);
-      console.log("Valid User");
+        setUserDetails(response.data.user);
+        navigate("/");
+      } else {
+        console.log(response.error);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 

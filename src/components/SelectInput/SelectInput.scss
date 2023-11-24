@@ -1,0 +1,18 @@
+.input-label {
+    transition: 0.3s;
+    pointer-events: none;
+  }
+  
+  .form-input:valid ~ .input-label,
+  .form-input:focus ~ .input-label {
+    color: #4d4d4d;
+    transform: translateX(3px) translateY(-25px);
+    background-color: #ffffff;
+    padding: 0px 5px;
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border: 1px solid #4d4d4d;
+  }
+  
