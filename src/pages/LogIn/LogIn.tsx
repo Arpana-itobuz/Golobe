@@ -6,7 +6,7 @@ import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../helperFunctions/apiCalls";
 import ImageSlider from "../../components/ImageSlider/ImageSlider";
-import AppLogos from "../../components/appLogos/AppLogos";
+import AppLogos from "../../components/AppLogos/AppLogos";
 import { Token } from "../../interfaces/enums";
 import { GlobalContext } from "../../context/GlobalContext";
 import { UserLogin } from "../../interfaces/interfaces";
@@ -29,7 +29,9 @@ const LogIn = () => {
   const onSubmit: SubmitHandler<UserLogin> = async (formDetails) => {
     try {
       const response = await login(formDetails);
-      if (response.success && response.data.user) {
+      console.log(response);
+      
+      // if (response.success && response.data.user) {
         localStorage.setItem(
           Token.ACCESS_TOKEN,
           response.data.token.accessToken
@@ -41,9 +43,9 @@ const LogIn = () => {
 
         setUserDetails(response.data.user);
         navigate("/");
-      } else {
-        console.log(response.error);
-      }
+      // } else {
+      //   console.log(response.error);
+      // }
     } catch (error) {
       console.log(error);
     }

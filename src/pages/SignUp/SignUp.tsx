@@ -7,7 +7,7 @@ import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../../helperFunctions/apiCalls";
 import ImageSlider from "../../components/ImageSlider/ImageSlider";
-import AppLogos from "../../components/appLogos/AppLogos";
+import AppLogos from "../../components/AppLogos/AppLogos";
 
 export default function SignUp() {
   const navigate = useNavigate();

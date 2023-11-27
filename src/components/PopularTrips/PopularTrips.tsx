@@ -8,7 +8,7 @@ export default function PopularTrips({
   image: string;
 }) {
   return (
-    <div className="shadow-lg flex items-center gap-5 p-5 rounded-lg">
+    <div className="shadow-[rgba(17,17,26,0.05)_0px_4px_16px,rgba(17,17,26,0.05)0px_8px_32px] flex items-center gap-5 p-5 rounded-lg">
       <div>
         <img src={image} alt={name} />
       </div>

@@ -20,8 +20,24 @@ import dp from "../../assets/dp.svg";
 import { getProfile } from "../../helperFunctions/apiCalls";
 import { GlobalContext } from "../../context/GlobalContext";
 import { Token } from "../../interfaces/enums";
+import hotelBg from "../../assets/hotelsBg.png";
+import flightBg from "../../assets/flightsBg.png";
+import ReviewCard from "../../components/ReviewCard/ReviewCard";
+import Footer from "../../components/Footer/Footer";
 
 export default function Dashboard() {
+  const hotelFlightBg = [
+    {
+      image: flightBg,
+      name: "Flights",
+      logo: FaPaperPlane,
+    },
+    {
+      image: hotelBg,
+      name: "Hotels",
+      logo: MdKingBed,
+    },
+  ];
   const popularTrips = [
     {
       image: istanbul,
@@ -79,8 +95,8 @@ export default function Dashboard() {
   }, [setUserDetails]);
 
   return (
-    <div className="flex flex-col items-center m-10">
-      <div className="bg-[url('/Users/it052312/Desktop/Golobe/app/src/assets/dashboardBg.png')] bg-no-repeat bg-center flex flex-col items-center w-full bg-cover rounded-xl">
+    <div className="flex flex-col items-center">
+      <div className="bg-[url('/Users/it052312/Desktop/Golobe/app/src/assets/dashboardBg.png')] bg-no-repeat bg-center flex flex-col items-center w-full bg-cover rounded-xl m-10 w-[96%]">
         <div className="flex justify-between items-center w-full py-5 px-10">
           <div className="flex justify-between items-center gap-3">
             <div className="flex text-white items-center gap-1">
@@ -118,7 +134,7 @@ export default function Dashboard() {
                 <hr className="w-4 rotate-90" />
                 <div className="py-2 px-5 font-medium flex text-white items-center gap-2">
                   <img src={dp} alt="dp" />
-                  {/* <p>{userDetails.firstName}</p> */}
+                  <p>{userDetails.firstName}</p>
                 </div>
               </div>
             )}
@@ -179,6 +195,43 @@ export default function Dashboard() {
           );
         })}
       </div>
+      <div className="grid grid-cols-2 gap-10 mt-10 w-[90%]">
+        {hotelFlightBg.map((value, index) => {
+          return (
+            <div key={index} className="relative">
+              <img src={value.image} alt="" className="w-full" />
+              <div className="absolute bottom-4 right-28 text-white flex flex-col items-center gap-3 my-3">
+                <p className="text-3xl font-semibold">{value.name}</p>
+                <p>
+                  Search {value.name} & Places Hire to our most popular
+                  destinations
+                </p>
+                <div className="bg-[#8DD3BB] p-2 rounded-lg flex items-center gap-2 text-black">
+                  <value.logo className="text-lg" />
+                  <p className="text-sm">Show {value.name}</p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <div className="flex justify-between mt-10 w-[90%] py-3 items-center">
+        <div className="flex flex-col gap-3">
+          <p className="text-2xl font-semibold">Reviews</p>
+          <p className="text-[#1128]">
+            What people says about Golobe facilities
+          </p>
+        </div>
+        <button className="border-[#8DD3BB] border p-2 rounded-lg">
+          See All
+        </button>
+      </div>
+      <div className="grid grid-cols-3 gap-10 mt-10 w-[90%]">
+        <ReviewCard />
+        <ReviewCard />
+        <ReviewCard />
+      </div>
+      <Footer />
     </div>
   );
 }
