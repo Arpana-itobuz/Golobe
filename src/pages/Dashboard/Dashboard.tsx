@@ -127,14 +127,14 @@ export default function Dashboard() {
               </>
             ) : (
               <div className="flex items-center">
-                <Link className="py-2 px-5 font-medium flex text-white items-center gap-2">
+                <div className="py-2 px-5 font-medium flex text-white items-center gap-2">
                   <FaHeart />
                   <p>Favourites</p>
-                </Link>
+                </div>
                 <hr className="w-4 rotate-90" />
                 <div className="py-2 px-5 font-medium flex text-white items-center gap-2">
                   <img src={dp} alt="dp" />
-                  <p>{userDetails.firstName}</p>
+                  {/* <p>{userDetails.firstName}</p> */}
                 </div>
               </div>
             )}
@@ -146,7 +146,7 @@ export default function Dashboard() {
           <p className="text-xl py-10">Special offers to suit your plan</p>
         </div>
       </div>
-      <div className="flex-col flex gap-3 w-[90%] shadow-lg p-5 bg-white z-100 my-[-4%] rounded-xl">
+      <div className="flex-col flex gap-3 w-[90%] shadow-lg p-5 bg-white z-100 my-[-6%] rounded-xl">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1 hover:border-b-2 hover:border-[#8DD3BB] border-b-2 border-white pb-1">
             <FaPlane className="text-xl" />
